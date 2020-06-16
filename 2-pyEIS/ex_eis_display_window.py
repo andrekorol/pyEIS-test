@@ -20,10 +20,10 @@ wave = eis.data['wave']
 cal_status = 'counts'
 
 raster = np.sum(data, axis=2)
-range = np.percentile(raster, (1, 99))
-range = range[1]*np.array([1.0E-2, 1.0])
-print(range)
-scaled = np.clip(raster, range[0], range[1])
+raster_range = np.percentile(raster, (1, 99))
+raster_range = raster_range[1]*np.array([1.0E-2, 1.0])
+print(raster_range)
+scaled = np.clip(raster, raster_range[0], raster_range[1])
 scaled = np.log10(raster)
 x_scale = eis.data['pointing']['x_scale']
 

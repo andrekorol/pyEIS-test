@@ -77,9 +77,9 @@ IMGny    = ints.shape[0]/50.0
 plt.rcParams.update({'font.size':14})
 # plot raster
 raster   = np.sum(ints, axis=2)
-range    = np.percentile(raster, (1, 99))
-range    = range[1]*np.array([1.0E-2, 1.0])
-scaled   = np.log10(np.clip(raster, range[0], range[1]))
+raster_range    = np.percentile(raster, (1, 99))
+raster_range    = raster_range[1]*np.array([1.0E-2, 1.0])
+scaled   = np.log10(np.clip(raster, raster_range[0], raster_range[1]))
 plt.figure(figsize=(IMGnx*4, IMGny))
 plt.subplot(1,4,1)
 plt.imshow(scaled, origin='lower', aspect=1/x_scale, cmap='gray')
@@ -91,9 +91,9 @@ plt.title('Data : '+date_obs)
 # plot fit
 gauss    = fit['component']-1
 fitrast  = fit['int'][::,::,gauss]
-range    = np.percentile(fitrast, (1, 99))
-range    = range[1]*np.array([1.0E-2, 1.0])
-scaled   = np.log10(np.clip(fitrast, range[0], range[1]))
+raster_range    = np.percentile(fitrast, (1, 99))
+raster_range    = raster_range[1]*np.array([1.0E-2, 1.0])
+scaled   = np.log10(np.clip(fitrast, raster_range[0], raster_range[1]))
 plt.subplot(1,4,2)
 plt.imshow(scaled, origin='lower', aspect=1/x_scale, cmap='gray')
 plt.plot(ypos, xpos, 'r+', markersize=4)

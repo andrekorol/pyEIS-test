@@ -168,18 +168,18 @@ if __name__ == '__main__':
     IMGny    = ints.shape[0]/50.
     # raster
     raster   = np.sum(ints, axis=2)
-    range    = np.percentile(raster, (1, 99))
-    range    = range[1]*np.array([1.0E-2, 1.0])
-    scaled   = np.log10(np.clip(raster, range[0], range[1]))
+    raster_range    = np.percentile(raster, (1, 99))
+    raster_range    = raster_range[1]*np.array([1.0E-2, 1.0])
+    scaled   = np.log10(np.clip(raster, raster_range[0], raster_range[1]))
     plt.figure(figsize=(IMGnx, IMGny))
     plt.subplot(121)
     plt.imshow(scaled, origin='lower', aspect=1/x_scale, cmap='gray')
     plt.title(date_obs)
     fits     = fit.fit
     fit      = fits['int'][::,::,(fits['component']-1)]
-    range    = np.percentile(fit, (1, 99))
-    range    = range[1]*np.array([1.0E-2, 1.0])
-    scaled   = np.log10(np.clip(fit, range[0], range[1]))
+    raster_range    = np.percentile(fit, (1, 99))
+    raster_range    = raster_range[1]*np.array([1.0E-2, 1.0])
+    scaled   = np.log10(np.clip(fit, raster_range[0], raster_range[1]))
     plt.subplot(122)
     plt.imshow(scaled, origin='lower', aspect=1/x_scale, cmap='gray')
     plt.title('Fit')
