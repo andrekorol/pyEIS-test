@@ -135,8 +135,8 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
     # input data and template files
-    file_data = "data/20131025/eis_20131025_143333.data.h5"
-    file_template = "data/20131025/fe_12_195_119.2c.template.h5"
+    file_data = "./data/20131025/eis_20131025_143333.data.h5"
+    file_template = "./data/20131025/fe_12_195_119.2c.template.h5"
 
     # read fit template
     template = eis_read_template(file_template)
@@ -189,15 +189,17 @@ if __name__ == "__main__":
     scaled = np.log10(np.clip(raster, raster_range[0], raster_range[1]))
     plt.figure(figsize=(IMGnx, IMGny))
     plt.subplot(121)
+    plt.tick_params(labelsize=14)
     plt.imshow(scaled, origin="lower", aspect="auto", cmap="gray")
-    plt.title(date_obs)
+    plt.title(date_obs, fontsize=15)
     fits = fit.fit
     fit = fits["int"][::, ::, (fits["component"] - 1)]
     raster_range = np.percentile(fit, (1, 99))
     raster_range = raster_range[1] * np.array([1.0e-2, 1.0])
     scaled = np.log10(np.clip(fit, raster_range[0], raster_range[1]))
     plt.subplot(122)
+    plt.tick_params(labelsize=14)
     plt.imshow(scaled, origin="lower", aspect="auto", cmap="gray")
-    plt.title("Fit")
+    plt.title("Fit", fontsize=15)
     plt.tight_layout()
     plt.show()
