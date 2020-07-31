@@ -179,4 +179,4 @@ if __name__ == "__main__":
     plt.tight_layout()
     fig = plt.gcf()
     plt.show()
-    fig.savefig("fe_12_profile_fit.png", bbox_inches="tight", dpi=300)
+    fig.savefig("fe_12_profile_fit.png", bbox_inches="tight", dpi=150)
