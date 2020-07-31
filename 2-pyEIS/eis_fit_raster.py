@@ -203,4 +203,4 @@ if __name__ == "__main__":
     plt.title("Fit", fontsize=18)
     fig = plt.gcf()
     plt.show()
-    fig.savefig("fe_12_profile_fit.png", bbox_inches="tight")
+    fig.savefig("spectra_raster_fit.png", bbox_inches="tight", dpi=300)
